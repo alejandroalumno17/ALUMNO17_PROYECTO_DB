@@ -16,7 +16,6 @@ sources:
       error_after: {count: 33, period: day}
 
     tables:
-
       - name: budget
         loaded_at_field: _fivetran_synced
         columns:

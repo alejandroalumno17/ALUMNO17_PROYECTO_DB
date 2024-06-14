@@ -131,9 +131,6 @@ sources:
           - name: promo_id
             data_type: varchar
             description: "Identificador de la promoción que se aplica a la order"
-            tests:
-              - accepted_values:
-                  values: ['task-force','instruction set','leverage','Optional','Mandatory','Digitized','']
           - name: estimated_delivery_at
             data_type: timestamp_tz
             description: "Fecha de tipo en la que se espera la llegada de la order"

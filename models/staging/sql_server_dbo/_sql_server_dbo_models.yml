@@ -212,19 +212,19 @@ models:
               - relationships:
                   to: ref('stg_promos')
                   field: promo_id
-          - name: shipping_cost_usd
+          - name: shipping_cost_euro
             data_type: float
             description: "Campo de coste de nuestro shipping para esta order"  
             tests:
               - not_null
               - positive_values
-          - name: order_cost_usd
+          - name: order_cost_euro
             data_type: float
             description: "Campo de coste de los productos de nuestra order"
             tests:
               - not_null
               - positive_values
-          - name: order_total_usd
+          - name: order_total_euro
             data_type: float
             description: "Campo de valor total de nuestra order"
             tests:
@@ -247,7 +247,7 @@ models:
             description: "Nombre del producto"
             tests:
               - not_null
-          - name: price_usd
+          - name: price_euro
             data_type: float
             description: "Valor del producto"
             tests:
@@ -353,3 +353,63 @@ models:
           - name: date_load
             data_type: timestamp_tz
             description: ""
+
+      - name: stg_sql_server_dbo__shipping_service                 
+        description: "Tabla que recoge todos los servicios de entrega disponibles"
+        columns:
+          - name: shipping_service_id
+            data_type: varchar(256)
+            description: "Identificador unico del servicio de envio"
+            tests:
+              - unique
+              - not_null
+          - name: shipping_service_name
+            data_type: varchar(256)
+            description: "Nombre del servicio de envio"
+            tests:
+              - not_null
+
+      - name: stg_sql_server_dbo__orders_status                
+        description: "Tabla que recoge los diferentes estados en los que puede estar un pedido"
+        columns:
+          - name: order_status_id
+            data_type: varchar(256)
+            description: "Identificador unico del estado"
+            tests:
+              - unique
+              - not_null
+          - name: status
+            data_type: varchar(256)
+            description: "Estado"
+            tests:
+              - not_null
+
+      - name: stg_sql_server_dbo__promos_status                
+        description: "Tabla que recoge todos los estados en los que puede estar una promocion"
+        columns:
+          - name: promo_status_id
+            data_type: number(2,0)
+            description: "Identificador unico del estado"
+            tests:
+              - not_null
+          - name: promo_status
+            data_type: varchar(256)
+            description: "Estado"
+            tests:
+              - not_null
+
+      - name: stg_sql_server_dbo__events_types                
+        description: "Tabla que recoge todos los diferentes tipos de eventos existentes"
+        columns:
+          - name: event_type_id
+            data_type: varchar(256)
+            description: "Identificador unico del tipo de evento"
+            tests:
+              - unique
+              - not_null
+
+          - name: event_type_name
+            data_type: varchar(256)
+            description: "Nombre del tipo de evento"
+            tests:
+              - not_null

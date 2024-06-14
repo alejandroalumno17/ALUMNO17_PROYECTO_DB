@@ -95,7 +95,7 @@ models:
             data_type: timestamp_tz
             description: ""
 
-      - name: dim_event_type
+      - name: dim_events_types
         description: "Tabla de dimensiones de los tipos de eventos"
         columns:
           - name: event_type_id
@@ -123,7 +123,7 @@ models:
             description: "Nombre del producto"
             tests:
               - not_null
-          - name: price_usd
+          - name: price_euro
             data_type: float
             description: "Valor del producto"
             tests:
@@ -153,7 +153,7 @@ models:
             description: "Nombre para una promoción"
             tests:
               - not_null
-          - name: discount_usd
+          - name: discount_euro
             data_type: number
             description: "Valor númerico de una promoción"
           - name: status
@@ -181,7 +181,7 @@ models:
             description: "Descripción de la compañia de envíos"
             tests:
               - not_null
-          - name: total_shipping_cost_usd
+          - name: total_shipping_cost_euro
             data_type: varchar
             description: "Costo total de la compañia de sus envíos"
             tests:
@@ -408,13 +408,13 @@ models:
             tests:
               - not_null
               - positive_values
-          - name: price_unit_product_usd
+          - name: price_unit_product_euro
             data_type: float
             description: "Valor del producto de forma unitario"
             tests:
               - not_null
               - positive_values
-          - name: price_total_order_item_usd
+          - name: price_total_order_item_euro
             data_type: float
             description: "Valor total del producto dentro de nuestra order item"
             tests:
@@ -427,7 +427,7 @@ models:
               - relationships:
                   to: ref('dim_shipping')
                   field: shipping_service_id
-          - name: shipping_cost_item_usd
+          - name: shipping_cost_item_euro
             data_type: varchar
             description: "Coste de envío para este producto en proporcion a su cantidad de producto dentro de la order item"
             tests:

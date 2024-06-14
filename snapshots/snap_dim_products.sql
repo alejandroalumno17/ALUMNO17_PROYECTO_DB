@@ -44,7 +44,7 @@ removing_duplicates AS (
     SELECT 
          product_id,
          products_name,
-         price_usd,
+         price_euro,
          inventory,
          date_load
 
