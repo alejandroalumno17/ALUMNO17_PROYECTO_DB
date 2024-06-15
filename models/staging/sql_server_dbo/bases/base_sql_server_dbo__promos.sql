@@ -24,7 +24,7 @@ renamed as (
         distinct md5(promo_id) as promo_id,
         promo_id as promo_name,
         discount,
-        status,
+        status as promo_status,
         _fivetran_deleted,
         convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
 

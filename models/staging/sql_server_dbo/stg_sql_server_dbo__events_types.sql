@@ -16,7 +16,7 @@ renamed as (
 
     select
         distinct md5(event_type) as event_type_id,
-        event_type as event_type_name
+        event_type
 
     from source
 

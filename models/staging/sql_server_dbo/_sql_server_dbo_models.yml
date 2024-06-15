@@ -131,14 +131,6 @@ models:
             tests:
               - not_null
               - unique
-          - name: sellers_id
-            data_type: varchar
-            description: "Identificador único de un vendedor"  
-            tests:
-               - not_null
-               - relationships:
-                  to: ref('stg_sellers')
-                  field: sellers_id
           - name: user_id
             data_type: varchar
             description: "Identificador único del usuario que realiza esta order"
