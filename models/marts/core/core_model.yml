@@ -537,17 +537,17 @@ models:
             description: "Identificador de la address del vendedor"
             tests:
               - not_null
-          - name: contract_start_date
+          - name: contract_start_date_at_date
             data_type: timestamp_tz
             description: "Fecha de inicio de contrato del vendedor"
             tests:
               - not_null
-          - name: contract_end_date
+          - name: contract_end_date_at_date
             data_type: timestamp_tz
             description: "Fecha de fin del contrato del vendedor"
             tests:
               - not_null
-          - name: _fivetran_synced
+          - name: date_load
             data_type: timestamp_tz
             tests:
               - not_null

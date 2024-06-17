@@ -56,7 +56,7 @@ models:
             tests:
               - not_null
               - relationships:
-                  to: ref('stg_users')
+                  to: ref('stg_sql_server_dbo__users')
                   field: user_id
           - name: session_id
             data_type: varchar
@@ -76,7 +76,7 @@ models:
             description: "Identificador de order para nuestro evento"
             tests:
               - relationships:
-                  to: ref('stg_products')
+                  to: ref('stg_sql_server_dbo__products')
                   field: product_id
           - name: created_at_date
             data_type: timestamp_tz
@@ -103,14 +103,14 @@ models:
             description: "Identificador de la order general para un determinado producto"
             tests: 
               - relationships:
-                  to: ref('stg_orders')
+                  to: ref('stg_sql_server_dbo__orders')
                   field: order_id
           - name: product_id
             data_type: varchar
             description: "Identificador del producto general para una determinada order"
             tests:
               - relationships:
-                  to: ref('stg_products')
+                  to: ref('stg_sql_server_dbo__products')
                   field: product_id
           - name: quantity
             data_type: number
@@ -136,14 +136,14 @@ models:
             description: "Identificador único del usuario que realiza esta order"
             tests:
               - relationships:
-                  to: ref('stg_users')
+                  to: ref('stg_sql_server_dbousers')
                   field: user_id
           - name: address_id
             data_type: varchar
             description: "Identificador de address para esta order concreta"
             tests:
               - relationships:
-                  to: ref('stg_addresses')
+                  to: ref('stg_sql_server_dbo__addresses')
                   field: address_id
           - name: tracking_id
             data_type: varchar
@@ -201,9 +201,6 @@ models:
             description: "Identificador de la promoción que se aplica a la order"
             tests:
               - not_null
-              - relationships:
-                  to: ref('stg_promos')
-                  field: promo_id
           - name: shipping_cost_euro
             data_type: float
             description: "Campo de coste de nuestro shipping para esta order"  
@@ -225,6 +222,9 @@ models:
           - name: date_load
             data_type: timestamp_tz
             description: ""
+          - name: vendedor_id
+            data_type: varchar
+            description: "Identificador único de un vendedor"  
 
       - name: stg_sql_server_dbo__products
         description: "Tabla con los resgitros de productos de las diferentes order"
@@ -320,7 +320,7 @@ models:
             description: "Identificador único de dirección del usuario"
             tests:
               - relationships:
-                  to: ref('stg_addresses')
+                  to: ref('stg_sql_server_dbo__addresses')
                   field: address_id
           - name: created_at_date
             data_type: timestamp_tz

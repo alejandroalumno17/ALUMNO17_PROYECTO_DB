@@ -170,6 +170,9 @@ sources:
             description: "Identificador hasheado(cifrado) de la promoción"
             tests:
               - not_null
+          - name: vendedor_id
+            data_type: varchar
+            description: "Identificador único de un vendedor"  
           
       - name: order_items
         description: "Tabla de la linea de una order específica extraida de nuestra fuente de datos(crudo)"
