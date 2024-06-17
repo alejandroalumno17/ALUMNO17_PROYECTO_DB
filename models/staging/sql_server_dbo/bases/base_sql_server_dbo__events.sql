@@ -16,10 +16,10 @@ renamed as (
         user_id,
         product_id,
         session_id,
-        convert_timezone('UTC', created_at) as created_at_time_utc,
+        {{ to_utc('created_at') }} as created_at_time_utc,
         order_id,
         _fivetran_deleted,
-        convert_timezone('UTC', _fivetran_synced) as date_load
+        {{ to_utc('_fivetran_synced') }} as date_load
     from source
 )
 

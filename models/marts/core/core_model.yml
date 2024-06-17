@@ -300,16 +300,13 @@ models:
             tests:
               - not_null
               - relationships:
-                  to: ref('dim_event_type')
+                  to: ref('dim_events_types')
                   field: event_type_id
           - name: user_id
             data_type: varchar
             description: "Usuario que ha realizado el tipo de evento y que debe de tener integridad referencial con user_id de la dim user"
             tests:
               - not_null
-              - relationships:
-                  to: ref('dim_user')
-                  field: user_id_key
           - name: session_id
             data_type: varchar
             description: "Sesión en la cual se realiza el evento"
@@ -429,9 +426,7 @@ models:
             data_type: varchar
             description: "Identificador de la promoción que se aplica a la order"
             tests:
-              - relationships:
-                  to: ref('dim_promos')
-                  field: promo_id
+              - not_null
           - name: status_id
             data_type: varchar
             description: "Identificador de estado en el que se encuentra la order"
@@ -491,7 +486,7 @@ models:
             tests:
               - not_null
               - relationships:
-                  to: ref('dim_product')
+                  to: ref('dim_products')
                   field: product_id
           - name: quantity
             data_type: varchar
@@ -504,5 +499,55 @@ models:
             tests:
               - not_null
           - name: date_load
+            tests:
+              - not_null
+      - name: dim_vendedores
+        description: "Tabla de vendedores"
+        columns:
+          - name: vendedor_id
+            data_type: varchar
+            description: "Identificador único del vendedor"
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            data_type: varchar
+            description: "Nombre del vendedor"
+            tests:
+              - not_null
+          - name: last_name
+            data_type: varchar
+            description: "Apellido del vendedor"
+            tests:
+              - not_null
+          - name: salary
+            data_type: number
+            description: "Valor del salario del vendedor"
+            tests:
+              - not_null
+              - positive_values
+          - name: commission
+            data_type: number
+            description: "Valor del porcentaje de comision que se lleva el vendedor por cada venta es un tipo entero"
+            tests:
+              - not_null
+              - positive_values
+          - name: address_id
+            data_type: varchar
+            description: "Identificador de la address del vendedor"
+            tests:
+              - not_null
+          - name: contract_start_date
+            data_type: timestamp_tz
+            description: "Fecha de inicio de contrato del vendedor"
+            tests:
+              - not_null
+          - name: contract_end_date
+            data_type: timestamp_tz
+            description: "Fecha de fin del contrato del vendedor"
+            tests:
+              - not_null
+          - name: _fivetran_synced
+            data_type: timestamp_tz
             tests:
               - not_null

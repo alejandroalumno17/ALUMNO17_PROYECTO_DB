@@ -4,7 +4,7 @@ sources:
 
   - name: sql_server_dbo # name of the source 
     schema: sql_server_dbo # this is the schema our raw data lives in
-    database: ALUMNO17_PROYECTO_BRONZE_DB # this is the name of our database
+    database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE_DB" # this is the name of our database
 
     quoting:
       database: false
@@ -304,3 +304,54 @@ sources:
               - not_null
           - name: _fivetran_deleted
           - name: _fivetran_synced
+    
+      - name: vendedores
+        description: "Tabla que contiene la información de un vendedor procede de la fuentes de datos(crudo)"
+        columns:
+          - name: vendedor_id
+            data_type: varchar
+            description: "Identificador único del vendedor"
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            data_type: varchar
+            description: "Nombre del vendedor"
+            tests:
+              - not_null
+          - name: last_name
+            data_type: varchar
+            description: "Apellido del vendedor"
+            tests:
+              - not_null
+          - name: salary
+            data_type: number
+            description: "Valor del salario del vendedor"
+            tests:
+              - not_null
+              - positive_values
+          - name: commission
+            data_type: number
+            description: "Valor del porcentaje de comision que se lleva el vendedor por cada venta es un tipo entero"
+            tests:
+              - not_null
+              - positive_values
+          - name: address_id
+            data_type: varchar
+            description: "Identificador de la address del vendedor"
+            tests:
+              - not_null
+          - name: contract_start_date
+            data_type: timestamp_tz
+            description: "Fecha de inicio de contrato del vendedor"
+            tests:
+              - not_null
+          - name: contract_end_date
+            data_type: timestamp_tz
+            description: "Fecha de fin del contrato del vendedor"
+            tests:
+              - not_null
+          - name: _fivetran_synced
+            data_type: timestamp_tz
+            tests:
+              - not_null

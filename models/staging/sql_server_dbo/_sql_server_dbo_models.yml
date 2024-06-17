@@ -405,3 +405,64 @@ models:
             description: "Nombre del tipo de evento"
             tests:
               - not_null
+      
+      - name: stg_sql_server_dbo__vendedores
+        description: "Tabla que contiene la información de un vendedor"
+        columns:
+          - name: vendedor_id
+            data_type: varchar
+            description: "Identificador único del vendedor"
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            data_type: varchar
+            description: "Nombre del vendedor"
+            tests:
+              - not_null
+          - name: last_name
+            data_type: varchar
+            description: "Apellido del vendedor"
+            tests:
+              - not_null
+          - name: salary
+            data_type: number
+            description: "Valor del salario del vendedor"
+            tests:
+              - not_null
+              - positive_values
+          - name: commission
+            data_type: number
+            description: "Valor del porcentaje de comision que se lleva el vendedor por cada venta es un tipo entero"
+            tests:
+              - not_null
+              - positive_values
+          - name: address_id
+            data_type: varchar
+            description: "Identificador único de la address del vendedor"
+            tests:
+              - not_null
+          - name: contract_start_date_at_date
+            data_type: timestamp_tz
+            description: "Fecha de inicio de contrato en dias-mes-años del vendedor"
+            tests:
+              - not_null
+          - name: contract_start_date_at_time_utc
+            data_type: timestamp_tz
+            description: "Fecha de inicio de contrato en horas-minutos-segundos del vendedor"
+            tests:
+              - not_null
+          - name: contract_end_date_at_date
+            data_type: timestamp_tz
+            description: "Fecha de fin del contrato en dias-mes-año del vendedor"
+            tests:
+              - not_null
+          - name: contract_end_date_at_time_utc
+            data_type: timestamp_tz
+            description: "Fecha de fin del contrato en horas-minutos-segundos del vendedor"
+            tests:
+              - not_null
+          - name: date_load
+            data_type: timestamp_tz
+            tests:
+              - not_null
