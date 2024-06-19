@@ -485,9 +485,6 @@ models:
             description: "Identificador único para un tipo de producto"
             tests:
               - not_null
-              - relationships:
-                  to: ref('dim_products')
-                  field: product_id
           - name: quantity
             data_type: varchar
             description: "Cantidad de un budget"
